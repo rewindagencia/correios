@@ -279,7 +279,7 @@ class PedroTeixeira_Correios_Model_Carrier_CorreiosMethod
             );
 
             $client->setParameterGet('StrRetorno', 'xml');
-            $client->setParameterGet('nCdServico', $this->_postMethods);
+$client->setParameterGet('nCdServico', $this->_postMethods.',04014,04510');
             $client->setParameterGet('nVlPeso', $this->_packageWeight);
             $client->setParameterGet('sCepOrigem', $this->_fromZip);
             $client->setParameterGet('sCepDestino', $this->_toZip);
@@ -316,7 +316,8 @@ class PedroTeixeira_Correios_Model_Carrier_CorreiosMethod
             }
 
             $content = $client->request()->getBody();
-
+$content = str_replace('04014', '40010', $content);
+$content = str_replace('04510', '41106', $content);
             if ($content == '') {
                 throw new Exception('No XML returned [' . __LINE__ . ']');
             }
